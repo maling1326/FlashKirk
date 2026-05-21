@@ -30,11 +30,6 @@ export function useTransaction() {
       totalAmount: items.reduce((sum, item) => sum + item.totalPrice, 0),
       items: items,
     });
-    // try {
-    // } catch (err: any) {
-    //   console.error("Failed to process transaction:", err.message || err);
-    //   return;
-    // }
 
     // Clear the selected items from the cart
     items.forEach((item) => {
