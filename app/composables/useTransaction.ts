@@ -1,58 +1,99 @@
+interface TransactionItem {
+  variant: string;
+  color: string;
+  quantity: number;
+}
 
+interface Transaction {
+  id: number;
+  date: string;
+  time: string;
 
-// interface Transaction {
-//   id: number;
-//   date: string;
-//   time: string;
-//   quantity: number;
-//   totalPrice: number;
-// }
+  item: TransactionItem[];
 
-// export function useTransaction() {
-//   const transactions = useState<Transaction[]>("transactions", () => []);
-//   const cart = useCart();
+  expectedArrive: string;
+  isDelivered: boolean;
 
-//   onMounted(() => {
-//     const storedtransactions = localStorage.getItem("transactions");
-//     if (storedtransactions) transactions.value = JSON.parse(storedtransactions);
-//   });
+  totalPrice: number;
+}
 
-//   function checkOut() {
-//     if (cart.quantity.value <= 0) {
-//       console.error("No items to checkout.");
-//       return;
-//     }
+function getRandomDate(
+  start: Date = new Date(),
+  end: Date = new Date("2026-6-1"),
+): Date {
+  const startTime = start.getTime();
+  const endTime = end.getTime();
 
-//     transactions.value.push({
-//       id: Date.now(),
-//       date: new Date().toISOString(),
-//       time: new Date().toLocaleTimeString(),
-//       quantity: cart.quantity.value,
-//       totalPrice: cart.totalPrice.value,
-//     });
-//     cart.clearCart();
-//   }
+  const randomTime = startTime + Math.random() * (endTime - startTime);
 
-//   function clearTransactions() {
-//     transactions.value = [];
-//   }
+  return new Date(randomTime);
+}
 
-//   watch(
-//     transactions,
-//     (newTransactions) => {
-//       if (newTransactions.length === 0) localStorage.removeItem("transactions");
-//       else
-//         localStorage.setItem("transactions", JSON.stringify(newTransactions));
-//     },
-//     { deep: true },
-//   );
+export function useTransaction() {
+  const cart = useCart();
+  const transactions = useState<Transaction[]>("transactions", () => []);
 
-//   return {
-//     // Variables
-//     transactions,
+  onMounted(() => {
+    const storedtransactions = localStorage.getItem("transactions");
+    if (storedtransactions) transactions.value = JSON.parse(storedtransactions);
+  });
 
-//     // Functions
-//     checkOut,
-//     clearTransactions,
-//   };
-// }
+  function checkOut() {
+    if (cart.cart.value.length <= 0) {
+      console.log("No Transaction");
+      return;
+    }
+
+    transactions.value.push({
+      id: Date.now(),
+      date: new Date().toISOString(),
+      time: new Date().toLocaleTimeString(),
+
+      item: cart.cart.value.map((cartItem: any) => ({
+        variant: cartItem.variant,
+        color: cartItem.color,
+        quantity: cartItem.quantity,
+      })),
+
+      expectedArrive: getRandomDate().toISOString(),
+      isDelivered: false,
+
+      totalPrice: cart.totalPrice.value,
+    });
+
+    cart.clearCart();
+  }
+
+  function clearTransaction(transactionToClear: Transaction) {
+    transactions.value = transactions.value.filter(
+      (it) => it.id != transactionToClear.id,
+    );
+  }
+
+  function clearAllTransactions() {
+    transactions.value = [];
+  }
+
+  watch(
+    transactions,
+    (newTransactions) => {
+      if (import.meta.client) {
+        if (newTransactions.length === 0)
+          localStorage.removeItem("transactions");
+        else
+          localStorage.setItem("transactions", JSON.stringify(newTransactions));
+      }
+    },
+    { deep: true },
+  );
+
+  return {
+    // Variables
+    transactions,
+
+    // function
+    checkOut,
+    clearTransaction,
+    clearAllTransactions,
+  };
+}

@@ -1,41 +1,56 @@
 import { PRODUCT } from "~/utils/product";
 
-interface Cart {
+export interface Cart {
   name: string;
-  size: string;
   price: number;
+  variant: string;
   color: string;
   quantity: number;
 }
 
 export function useCart() {
+  const taxRate = ref(0.1);
+
   const cart = useState<Cart[]>("cart", () => []);
   const totalPrice = computed(() => {
     return cart.value.reduce((sum, item) => {
       return sum + item.price * item.quantity;
     }, 0);
   });
+  const totalQuantity = computed(() => {
+    return cart.value.reduce((sum, item) => {
+      return sum + item.quantity;
+    }, 0);
+  });
+  const taxAmount = computed(() => totalPrice.value * taxRate.value);
+  const grandTotal = computed(() => totalPrice.value + taxAmount.value);
 
   onMounted(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) cart.value = JSON.parse(storedCart);
   });
 
+  const defaultVariant =
+    PRODUCT.CAPACITY.at(1)?.SIZE ?? PRODUCT.CAPACITY[0]?.SIZE ?? "";
+  const defaultPrice =
+    PRODUCT.CAPACITY.at(1)?.PRICE ?? PRODUCT.CAPACITY[0]?.PRICE ?? 0;
+  const defaultColor = PRODUCT.COLOR.at(1) ?? PRODUCT.COLOR[0] ?? "";
+
   function addItemToCart(
-    name: string,
-    size: string,
-    price: number,
-    color: string,
+    name: string = PRODUCT.NAME,
+    variant: string = defaultVariant,
+    price: number = defaultPrice,
+    color: string = defaultColor,
   ) {
     const existingItem = cart.value.find(
       (item) =>
-        item.name === name && item.size === size && item.color === color,
+        item.name === name && item.variant === variant && item.color === color,
     );
     if (existingItem) existingItem.quantity += 1;
     else
       cart.value.push({
         name,
-        size,
+        variant,
         price,
         color,
         quantity: 1,
@@ -46,7 +61,7 @@ export function useCart() {
     const existingItem = cart.value.find(
       (it) =>
         it.name === item.name &&
-        it.size === item.size &&
+        it.variant === item.variant &&
         it.color === item.color,
     );
     if (!existingItem) return;
@@ -57,7 +72,7 @@ export function useCart() {
         (it) =>
           !(
             it.name === item.name &&
-            it.size === item.size &&
+            it.variant === item.variant &&
             it.color === item.color
           ),
       );
@@ -72,7 +87,7 @@ export function useCart() {
     const itemIndex = cart.value.findIndex(
       (it) =>
         it.name === item.name &&
-        it.size === item.size &&
+        it.variant === item.variant &&
         it.color === item.color,
     );
     if (itemIndex === -1) return;
@@ -80,7 +95,7 @@ export function useCart() {
     const existingItem = cart.value[itemIndex];
     if (!existingItem) return;
 
-    const newSize = toSize ?? existingItem.size;
+    const newSize = toSize ?? existingItem.variant;
     const newPrice = toPrice ?? existingItem.price;
     const newColor = toColor ?? existingItem.color;
 
@@ -88,23 +103,30 @@ export function useCart() {
       (it, index) =>
         itemIndex !== index &&
         it.name === existingItem.name &&
-        it.size === newSize &&
+        it.variant === newSize &&
         it.color === newColor,
     );
     if (duplicateItem) {
       duplicateItem.quantity += existingItem.quantity;
       cart.value.splice(itemIndex, 1);
     } else {
-      existingItem.size = newSize;
+      existingItem.variant = newSize;
       existingItem.price = newPrice;
       existingItem.color = newColor;
     }
   }
 
+  function clearCart() {
+    cart.value = [];
+  }
+
   watch(
     cart,
     (newCart) => {
-      localStorage.setItem("cart", JSON.stringify(newCart));
+      if (import.meta.client) {
+        if (newCart.length === 0) localStorage.removeItem("cart");
+        else localStorage.setItem("cart", JSON.stringify(newCart));
+      }
     },
     { deep: true },
   );
@@ -113,10 +135,15 @@ export function useCart() {
     // Variables
     cart,
     totalPrice,
+    totalQuantity,
+    taxRate,
+    taxAmount,
+    grandTotal,
 
     // Functions
     addItemToCart,
     removeItemFromCart,
     editItemFromCart,
+    clearCart,
   };
 }
