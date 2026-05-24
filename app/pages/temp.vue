@@ -406,35 +406,57 @@
     <div
       class="grid grid-cols-[1320px] grid-rows-[31px_103px_repeat(4,81.5px)] self-stretch py-8 border-y border-y-orange-10-16"
     >
+      <!-- Header -->
       <div
-        class="grid grid-cols-[32px_minmax(0,1fr)_minmax(0,1.4fr)_110px_100px] grid-rows-[16px] gap-[20px] justify-stretch px-6 pb-3.5"
+        class="grid grid-cols-[32px_minmax(0,1fr)_minmax(0,1.4fr)_110px_100px] grid-rows-[16px] gap-[20px] justify-stretch px-6 pb-3.5 border-b border-b-orange-10-16"
       >
         <p
-          class="flex self-stretch w-full text-start text-orange-10-40 font-family-font-3 text-10 font-400 leading-16 tracking-2-2 uppercase"
+          class="flex self-stretch text-start text-orange-10-40 font-family-font-3 text-10 font-400 leading-16 tracking-2-2 uppercase"
         >
           #
         </p>
         <p
-          class="flex self-stretch w-full text-start text-orange-10-40 font-family-font-3 text-10 font-400 leading-16 tracking-2-2 uppercase"
+          class="flex self-stretch text-start text-orange-10-40 font-family-font-3 text-10 font-400 leading-16 tracking-2-2 uppercase"
         >
-          #
+          Drive
         </p>
         <p
-          class="flex self-stretch w-full text-start text-orange-10-40 font-family-font-3 text-10 font-400 leading-16 tracking-2-2 uppercase"
+          class="flex self-stretch text-start text-orange-10-40 font-family-font-3 text-10 font-400 leading-16 tracking-2-2 uppercase"
         >
-          #
+          Speed
         </p>
         <p
-          class="w-full text-end text-orange-10-40 font-family-font-3 text-10 font-400 leading-16 tracking-2-2 uppercase"
+          class="flex justify-end self-stretch text-end text-orange-10-40 font-family-font-3 text-10 font-400 leading-16 tracking-2-2 uppercase"
         >
-          #
+          100 GB
         </p>
         <p
-          class="w-full text-end text-orange-10-40 font-family-font-3 text-10 font-400 leading-16 tracking-2-2 uppercase"
+          class="flex justify-end self-stretch text-end text-orange-10-40 font-family-font-3 text-10 font-400 leading-16 tracking-2-2 uppercase"
         >
-          #
+          GB/s
         </p>
       </div>
+
+      <!-- ByteMax -->
+      <div
+        class="grid grid-cols-[32px_minmax(0,1fr)_minmax(0,1.4fr)_110px_100px] grid-rows-[58px] gap-[20px] justify-stretch h-full px-6 py-5.5"
+      >
+        <p
+          class="flex justify-center items-center self-stretch text-start text-orange-10-40 font-family-font-3 text-24 font-400 leading-16 tracking-2-2 uppercase"
+        >
+          01
+        </p>
+        <div class="flex flex-col justify-center items-start self-stretch">
+          <p
+            class="flex text-orange-10 font-family-font-4 text-26 font-400 spacing-[33.8px] tracking-[-0.26px]"
+          >
+            Bytemax Nanoblades<span>TM</span>
+          </p>
+          <p>USB-C 4.0 · 40 Gbps · us</p>
+        </div>
+      </div>
+
+      <!-- Rest Item -->
     </div>
   </div>
 </template>
