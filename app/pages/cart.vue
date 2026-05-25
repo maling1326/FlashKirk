@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col w-330 max-w-330 min-h-320 items-center bg-orange-88 gap-[48px]"
+    class="flex flex-col w-330 max-w-330 min-h-screen items-center bg-orange-88 gap-[48px] pb-10"
   >
     <div
       class="flex flex-wrap justify-between items-end content-end pb-12 pt-6 self-stretch border-b border-b-orange-10-16"
@@ -36,7 +36,7 @@
         <div class="flex flex-col items-start gap-[0.01px] self-stretch">
           <!-- list all item -->
           <div
-            class="grid pb-8 gap-[32px] self-stretch grid-rows-1 grid-cols-[180px_minmax(0,1fr)_140px] border-b border-b-orange-10-16 h-fit"
+            class="grid pb-8 mb-8 gap-[32px] self-stretch grid-rows-1 grid-cols-[180px_minmax(0,1fr)_140px] border-b border-b-orange-10-16 h-fit"
             v-for="item in cart.cart.value"
           >
             <!-- Image -->
@@ -48,7 +48,8 @@
                 class="w-full max-w-[100px] aspect-[95/24] rotate-[-15deg] flex"
               >
                 <div
-                  class="w-full h-full rounded-[4px] shadow-panel-gloss relative flex items-center bg-black"
+                  class="w-full h-full rounded-[4px] shadow-panel-gloss relative flex items-center"
+                  :class="getColorClass(item.color)"
                 >
                   <p
                     class="text-orange-88-42 font-family-font-4 text-[5px] font-400 mb-2.5 ml-1.75 tracking-tight text-shadow-embossed"
@@ -74,7 +75,7 @@
             </div>
 
             <!-- Detail -->
-            <div class="flex flex-col justify-stretch items-start gap-[3px]">
+            <div class="flex flex-col justify-stretch items-start gap-0.75">
               <div class="flex flex-col items-start self-stretch">
                 <p
                   class="text-orange-10 font-family-font-4 text-30 font-400 spacing-[30px] -tracking-0-3"
@@ -101,7 +102,7 @@
                 >
                   <!-- Minus -->
                   <div
-                    class="flex w-[36px] h-[36px] flex-col justify-center items-center cursor-pointer"
+                    class="flex w-[36px] h-[36px] flex-col justify-center items-center cursor-pointer hover:bg-grey-92 rounded-l-full transition-all"
                     @click="cart.removeItemFromCart(item)"
                   >
                     <p
@@ -124,14 +125,13 @@
 
                   <!-- Plus -->
                   <div
-                    class="flex w-[36px] h-[36px] flex-col justify-center items-center cursor-pointer"
+                    class="flex w-[36px] h-[36px] flex-col justify-center items-center cursor-pointer hover:bg-grey-92 rounded-r-full transition-all"
                     @click="
-                      cart.addItemToCart(
-                        item.name,
-                        item.variant,
-                        item.price,
-                        item.color,
-                      )
+                      cart.addItemToCart({
+                        variant: item.variant,
+                        price: item.price,
+                        color: item.color,
+                      })
                     "
                   >
                     <p
@@ -272,21 +272,23 @@
         </div>
 
         <div
-          class="flex px-5.5 py-4.5 flex-col items-center justify-center rounded-full border border-[#B07D4F] bg-[#B07D4F]"
+          class="flex px-5.5 py-4.5 flex-col items-center justify-center rounded-full border cursor-pointer bg-[#ebaf7b] border-[#fcb170] hover:bg-[#fba050] hover:border-[#fba050] transition-all group"
+          @click="handlePayment()"
         >
           <p
-            class="text-orange-8 text-center font-family-font-1 text-13 font-400 spacing-[20.8px] tracking-[2.34px] uppercase"
+            class="text-orange-8 text-center font-family-font-1 text-13 font-400 spacing-[20.8px] tracking-[2.34px] uppercase group-hover:scale-110 transition-all"
           >
             Continue to payment →
           </p>
         </div>
         <div
-          class="flex px-5.5 py-5 flex-col items-center justify-center rounded-full border border-orange-10 mt-2"
+          class="flex px-5.5 py-5 flex-col items-center justify-center rounded-full border border-orange-10 mt-2 cursor-pointer hover:bg-[#ebaf7b]/15 transition-all group"
+          @click="router.push('/')"
         >
           <p
-            class="text-orange-8 text-center font-family-font-1 text-13 font-400 spacing-[20.8px] tracking-[2.34px] uppercase"
+            class="text-orange-8 text-center font-family-font-1 text-13 font-400 spacing-[20.8px] tracking-[2.34px] uppercase group-hover:scale-110 transition-all"
           >
-            Continue to payment →
+            Keep shopping
           </p>
         </div>
       </div>
@@ -295,5 +297,25 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute();
+const router = useRouter();
+
 const cart = useCart();
+
+function getColorClass(color) {
+  switch (color?.toLowerCase()) {
+    case "obsidian":
+      return "bg-black";
+    case "cream":
+      return "bg-[#FFFDD0]";
+    case "brass":
+      return "bg-[#b5a642]";
+  }
+}
+
+function handlePayment() {
+  if (cart.cart.value.length >= 1) {
+    router.push("/payment");
+  }
+}
 </script>

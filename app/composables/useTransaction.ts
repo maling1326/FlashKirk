@@ -29,13 +29,29 @@ function getRandomDate(
   return new Date(randomTime);
 }
 
+function checkIsDelivered(tx: Transaction[]) {
+  const currentTime = new Date();
+
+  tx.forEach((transaction) => {
+    const expectedTime = new Date(transaction.expectedArrive);
+
+    if (currentTime >= expectedTime) transaction.isDelivered = true;
+    else transaction.isDelivered = false;
+  });
+
+  return tx;
+}
+
 export function useTransaction() {
   const cart = useCart();
   const transactions = useState<Transaction[]>("transactions", () => []);
 
   onMounted(() => {
     const storedtransactions = localStorage.getItem("transactions");
-    if (storedtransactions) transactions.value = JSON.parse(storedtransactions);
+    if (storedtransactions) {
+      transactions.value = JSON.parse(storedtransactions);
+      checkIsDelivered(transactions.value);
+    }
   });
 
   function checkOut() {

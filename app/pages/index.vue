@@ -1,5 +1,3 @@
-<style></style>
-
 <template>
   <!-- Hero Section -->
   <div
@@ -147,7 +145,8 @@
         class="flex flex-wrap w-full items-start content-start justify-center gap-12"
       >
         <div
-          class="flex h-12 px-5.5 py-3.25 items-end gap-10 rounded-full border border-orange-10 bg-orange-10 hover:bg-orange-18 hover:border-orange-18 hover:scale-105 transition-all"
+          class="flex h-12 px-5.5 py-3.25 items-end gap-10 rounded-full border border-orange-10 bg-orange-10 hover:bg-orange-18 hover:border-orange-18 hover:scale-105 transition-all cursor-pointer"
+          @click="handleHeroButton"
         >
           <p
             class="text-orange-88 font-family-font-1 text-12 font-400 uppercase tracking-[2.5px]"
@@ -439,10 +438,10 @@
 
       <!-- ByteMax -->
       <div
-        class="grid grid-cols-[32px_minmax(0,1fr)_minmax(0,1.4fr)_110px_100px] grid-rows-[58px] gap-[20px] justify-stretch h-full px-6 py-5.5"
+        class="grid grid-cols-[32px_minmax(0,1fr)_minmax(0,1.4fr)_110px_100px] grid-rows-[58px] gap-[20px] justify-stretch h-full px-6 py-5.5 border-b border-b-orange-10-16 bg-orange-50-5"
       >
         <p
-          class="flex justify-center items-center self-stretch text-start text-orange-10-40 font-family-font-3 text-24 font-400 leading-16 tracking-2-2 uppercase"
+          class="flex justify-center items-center self-stretch text-start text-orange-50 font-family-font-3 text-24 font-400 leading-16 tracking-2-2 uppercase"
         >
           01
         </p>
@@ -450,13 +449,467 @@
           <p
             class="flex text-orange-10 font-family-font-4 text-26 font-400 spacing-[33.8px] tracking-[-0.26px]"
           >
-            Bytemax Nanoblades<span>TM</span>
+            Bytemax Nanoblades™
           </p>
-          <p>USB-C 4.0 · 40 Gbps · us</p>
+          <p
+            class="self-stretch text-orange-10-40 font-family-font-3 text-10 font-400 spacing-[13px] tracking-1-8 uppercase"
+          >
+            USB-C 4.0 · 40 Gbps · us
+          </p>
+        </div>
+        <div
+          class="flex h-1 justify-left items-center self-center bg-orange-10-16"
+        >
+          <div class="flex w-full h-1.5 justify-end items-center bg-orange-50">
+            <div class="w-0.5 h-4 bg-orange-50 shrink-0" />
+          </div>
+        </div>
+
+        <div class="flex flex-col items-end justify-center">
+          <p
+            class="text-orange-10 text-right font-family-font-2 text-18 italic font-500 spacing-[18px]"
+          >
+            20 s
+          </p>
+        </div>
+
+        <div class="flex flex-col items-end justify-center self-stretch">
+          <p
+            class="text-orange-10 text-right font-family-font-4 text-44 font-400 -tracking-0-88 -mb-3"
+          >
+            5.0
+          </p>
+          <div class="flex flex-col items-end self-stretch mb-3">
+            <p
+              class="text-orange-10-40 text-right text-10 font-400 spacing-[10px] tracking-1-8 uppercase"
+            >
+              gb/s
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="grid grid-cols-[32px_minmax(0,1fr)_minmax(0,1.4fr)_110px_100px] grid-rows-[36px] gap-[20px] justify-stretch h-full px-6 py-5.5 border-b border-b-orange-10-16"
+      >
+        <p
+          class="flex justify-center items-center self-stretch text-start text-orange-10-40 font-family-font-4 text-24 font-400 leading-6 -tracking-0-48"
+        >
+          02
+        </p>
+        <div
+          class="flex flex-col justify-center items-start self-stretch gap-[4.5px]"
+        >
+          <p
+            class="flex text-orange-10 font-family-font-1 text-15 font-500 leading-[19.5px]"
+          >
+            SanDisk Extreme PRO
+          </p>
+          <p
+            class="self-stretch text-orange-10-40 font-family-font-3 text-10 font-400 leading-13 tracking-1-8 uppercase"
+          >
+            USB4 · 40 Gbps
+          </p>
+        </div>
+        <div
+          class="flex h-1 justify-left items-center self-center bg-orange-10-16"
+        >
+          <div class="flex w-3/4 h-1.5 justify-end items-center bg-orange-10">
+            <div class="w-0.5 h-4 bg-orange-10 shrink-0" />
+          </div>
+        </div>
+
+        <div class="flex flex-col items-end justify-center">
+          <p
+            class="text-orange-10-65 text-right font-family-font-2 text-18 italic font-500 leading-[18px]"
+          >
+            26 s
+          </p>
+        </div>
+
+        <div class="flex flex-col items-end justify-center self-stretch">
+          <p
+            class="text-orange-10 text-right font-family-font-4 text-32 font-400 leading-32 -tracking-0-88"
+          >
+            5.0
+          </p>
+          <div class="flex flex-col items-end self-stretch mb-3">
+            <p
+              class="text-orange-10-40 text-right text-[8px] font-400 spacing-[10px] tracking-1-8 uppercase"
+            >
+              gb/s
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="grid grid-cols-[32px_minmax(0,1fr)_minmax(0,1.4fr)_110px_100px] grid-rows-[36px] gap-[20px] justify-stretch h-full px-6 py-5.5 border-b border-b-orange-10-16"
+      >
+        <p
+          class="flex justify-center items-center self-stretch text-start text-orange-10-40 font-family-font-4 text-24 font-400 leading-6 -tracking-0-48"
+        >
+          03
+        </p>
+        <div
+          class="flex flex-col justify-center items-start self-stretch gap-[4.5px]"
+        >
+          <p
+            class="flex text-orange-10 font-family-font-1 text-15 font-500 leading-[19.5px]"
+          >
+            Crucial X10 Pro
+          </p>
+          <p
+            class="self-stretch text-orange-10-40 font-family-font-3 text-10 font-400 leading-13 tracking-1-8 uppercase"
+          >
+            USB 3.2 Gen 2x2
+          </p>
+        </div>
+        <div
+          class="flex h-1 justify-left items-center self-center bg-orange-10-16"
+        >
+          <div class="flex w-7/15 h-1.5 justify-end items-center bg-orange-10">
+            <div class="w-0.5 h-4 bg-orange-10 shrink-0" />
+          </div>
+        </div>
+
+        <div class="flex flex-col items-end justify-center">
+          <p
+            class="text-orange-10-65 text-right font-family-font-2 text-18 italic font-500 leading-[18px]"
+          >
+            48 s
+          </p>
+        </div>
+
+        <div class="flex flex-col items-end justify-center self-stretch">
+          <p
+            class="text-orange-10 text-right font-family-font-4 text-32 font-400 leading-32 -tracking-0-88"
+          >
+            2.1
+          </p>
+          <div class="flex flex-col items-end self-stretch mb-3">
+            <p
+              class="text-orange-10-40 text-right text-[8px] font-400 spacing-[10px] tracking-1-8 uppercase"
+            >
+              gb/s
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="grid grid-cols-[32px_minmax(0,1fr)_minmax(0,1.4fr)_110px_100px] grid-rows-[36px] gap-[20px] justify-stretch h-full px-6 py-5.5 border-b border-b-orange-10-16"
+      >
+        <p
+          class="flex justify-center items-center self-stretch text-start text-orange-10-40 font-family-font-4 text-24 font-400 leading-6 -tracking-0-48"
+        >
+          04
+        </p>
+        <div
+          class="flex flex-col justify-center items-start self-stretch gap-[4.5px]"
+        >
+          <p
+            class="flex text-orange-10 font-family-font-1 text-15 font-500 leading-[19.5px]"
+          >
+            Samsung T9
+          </p>
+          <p
+            class="self-stretch text-orange-10-40 font-family-font-3 text-10 font-400 leading-13 tracking-1-8 uppercase"
+          >
+            USB 3.2 Gen 2×2
+          </p>
+        </div>
+        <div
+          class="flex h-1 justify-left items-center self-center bg-orange-10-16"
+        >
+          <div class="flex w-9/20 h-1.5 justify-end items-center bg-orange-10">
+            <div class="w-0.5 h-4 bg-orange-10 shrink-0" />
+          </div>
+        </div>
+
+        <div class="flex flex-col items-end justify-center">
+          <p
+            class="text-orange-10-65 text-right font-family-font-2 text-18 italic font-500 leading-[18px]"
+          >
+            50 s
+          </p>
+        </div>
+
+        <div class="flex flex-col items-end justify-center self-stretch">
+          <p
+            class="text-orange-10 text-right font-family-font-4 text-32 font-400 leading-32 -tracking-0-88"
+          >
+            2.0
+          </p>
+          <div class="flex flex-col items-end self-stretch mb-3">
+            <p
+              class="text-orange-10-40 text-right text-[8px] font-400 spacing-[10px] tracking-1-8 uppercase"
+            >
+              gb/s
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="grid grid-cols-[32px_minmax(0,1fr)_minmax(0,1.4fr)_110px_100px] grid-rows-[36px] gap-[20px] justify-stretch h-full px-6 py-5.5 border-b border-b-orange-10-16"
+      >
+        <p
+          class="flex justify-center items-center self-stretch text-start text-orange-10-40 font-family-font-4 text-24 font-400 leading-6 -tracking-0-48"
+        >
+          05
+        </p>
+        <div
+          class="flex flex-col justify-center items-start self-stretch gap-[4.5px]"
+        >
+          <p
+            class="flex text-orange-10 font-family-font-1 text-15 font-500 leading-[19.5px]"
+          >
+            Kingston DataTraveler Max
+          </p>
+          <p
+            class="self-stretch text-orange-10-40 font-family-font-3 text-10 font-400 leading-13 tracking-1-8 uppercase"
+          >
+            USB 3.2 Gen 2
+          </p>
+        </div>
+        <div
+          class="flex h-1 justify-left items-center self-center bg-orange-10-16"
+        >
+          <div class="flex w-1/4 h-1.5 justify-end items-center bg-orange-10">
+            <div class="w-0.5 h-4 bg-orange-10 shrink-0" />
+          </div>
+        </div>
+
+        <div class="flex flex-col items-end justify-center">
+          <p
+            class="text-orange-10-65 text-right font-family-font-2 text-18 italic font-500 leading-[18px]"
+          >
+            1 m 40 s
+          </p>
+        </div>
+
+        <div class="flex flex-col items-end justify-center self-stretch">
+          <p
+            class="text-orange-10 text-right font-family-font-4 text-32 font-400 leading-32 -tracking-0-88"
+          >
+            1.0
+          </p>
+          <div class="flex flex-col items-end self-stretch mb-3">
+            <p
+              class="text-orange-10-40 text-right text-[8px] font-400 spacing-[10px] tracking-1-8 uppercase"
+            >
+              gb/s
+            </p>
+          </div>
         </div>
       </div>
 
       <!-- Rest Item -->
     </div>
+
+    <div
+      class="grid grid-cols-[minmax(0,2fr)_minmax(0,1fr)] grid-rows-[172px] self-stretch pt-40px gap-[64px]"
+    >
+      <div class="flex max-w-100 py-10 flex-col items-start justify-center">
+        <p
+          class="text-orange-10-65 font-family-font-2 text-40 italic font-400 leading-46 -tracking-0-4"
+        >
+          <span class="text-orange-10">Five gigabytes a second.</span> Felt, not
+          measured.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Configuration -->
+  <div
+    class="flex flex-col justify-center items-center self-stretch px-7.5 py-16 border-y border-y-orange-10-16 bg-grey-92 z-10"
+  >
+    <div class="flex flex-col w-full max-w-330 gap-56 items-center self-center">
+      <div
+        class="flex flex-col w-full justify-center items-start content-end mb-23.25"
+      >
+        <div class="flex w-[28px] h-[1px] opacity-50 bg-orange-10-65" />
+        <h2
+          class="text-orange-10 font-family-font-4 text-112 font-400 leading-106-4 -tracking-2-24 max-w-300 flex-wrap"
+        >
+          Pick a capacity.
+        </h2>
+        <p
+          class="text-orange-10-65 font-family-font-2 italic text-112 font-400 leading-106-4 -tracking-2-24"
+        >
+          Don't worry.
+        </p>
+      </div>
+
+      <div
+        class="w-full grid gap-[64px] self-stretch grid-rows-[495px] grid-cols-2"
+      >
+        <div class="flex flex-col items-start gap-31">
+          <div class="flex flex-col items-start gap-14 self-stretch">
+            <p
+              class="flex items-start self-stretch pb-[0.6px] text-orange-10-40 font-family-font-3 text-11 font-400 leading-17-6 tracking-2-42 uppercase"
+            >
+              Capacity
+            </p>
+            <div
+              class="flex items-start content-start gap-8 self-stretch flex-wrap"
+            >
+              <div class="flex gap-4">
+                <label
+                  v-for="item in PRODUCT.CAPACITY"
+                  :key="item.SIZE"
+                  class="cursor-pointer group"
+                >
+                  <input
+                    type="radio"
+                    name="capacity"
+                    :value="item"
+                    v-model="selectedCapacity"
+                    class="sr-only"
+                  />
+
+                  <div
+                    class="flex py-3 px-4.5 gap-8 items-center justify-center rounded-full border transition-all duration-200"
+                    :class="
+                      selectedCapacity?.SIZE === item.SIZE
+                        ? 'bg-orange-10 border-orange-10 shadow-md'
+                        : 'border-orange-10-32 group-hover:border-orange-10-65 group-hover:bg-black/5'
+                    "
+                  >
+                    <p
+                      class="text-center font-family-font-1 text-13 font-400 tracking-0-65 transition-colors duration-200"
+                      :class="
+                        selectedCapacity?.SIZE === item.SIZE
+                          ? 'text-orange-88'
+                          : 'text-orange-10'
+                      "
+                    >
+                      {{ item.SIZE }}
+                    </p>
+                    <p
+                      class="text-center font-family-font-3 text-11 font-400 tracking-1-1 transition-colors duration-200"
+                      :class="
+                        selectedCapacity?.SIZE === item.SIZE
+                          ? 'text-orange-88'
+                          : 'text-orange-10-45'
+                      "
+                    >
+                      ${{ item.PRICE }}
+                    </p>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col items-start gap-14 self-stretch">
+            <p
+              class="flex items-start self-stretch pb-[0.6px] text-orange-10-40 font-family-font-3 text-11 font-400 leading-17-6 tracking-2-42 uppercase"
+            >
+              Colourway
+            </p>
+            <div
+              class="flex items-start content-start gap-8 self-stretch flex-wrap"
+            >
+              <div class="flex gap-4">
+                <label
+                  v-for="item in PRODUCT.COLOR"
+                  :key="item"
+                  class="cursor-pointer group"
+                >
+                  <input
+                    type="radio"
+                    name="color"
+                    :value="item"
+                    v-model="selectedColor"
+                    class="sr-only"
+                  />
+
+                  <div
+                    class="flex py-3 px-4.5 gap-8 items-center justify-center rounded-full border transition-all duration-200"
+                    :class="
+                      selectedColor === item
+                        ? 'bg-orange-10 border-orange-10 shadow-md'
+                        : 'border-orange-10-32 group-hover:border-orange-10-65 group-hover:bg-black/5'
+                    "
+                  >
+                    <div
+                      class="rounded-full w-4 h-4 border border-white-15"
+                      :class="getColor(item)"
+                    />
+
+                    <p
+                      class="text-center font-family-font-1 text-13 font-400 tracking-0-65 transition-colors duration-200 capitalize"
+                      :class="
+                        selectedColor === item
+                          ? 'text-orange-88'
+                          : 'text-orange-10'
+                      "
+                    >
+                      {{ item }}
+                    </p>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex pt-[25px] items-end justify-between self-stretch border-t border-t-10-16"
+          >
+            <div class="flex flex-col items-start gap-5">
+              <p
+                class="flex items-start self-stretch text-orange-10 font-family-font-1 text-15 font-400 leading-6"
+              >
+                Total
+              </p>
+              <p
+                class="flex pt-px items-start self-stretch text-orange-10 font-family-font-4 text-96 font-400 leading-96 -tracking-1-92"
+              >
+                ${{ selectedCapacity?.PRICE }}
+              </p>
+              <p
+                class="flex pb-[0.6px] flex-col items-start self-stretch text-orange-10-40 font-family-font-3 text-11 font-400 leading-17-6 tracking-1-98"
+              >
+                FREE SHIPPING · 60-DAY RETURNS
+              </p>
+            </div>
+            <div class="flex flex-col items-end gap-10">
+              <button type="button" class="flex px-[22px] py-[12px] items-end gap-10 rounded-full border "></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const route = useRoute();
+const router = useRouter();
+
+const cart = useCart();
+const selectedCapacity = ref(
+  PRODUCT.CAPACITY.find((item) => item.SIZE === "1 TB"),
+);
+const selectedColor = ref(PRODUCT.COLOR ? PRODUCT.COLOR[0] : "");
+
+// Example color function (if you don't already have it defined here)
+function getColor(color) {
+  switch (color?.toLowerCase()) {
+    case "obsidian":
+      return "bg-black";
+    case "cream":
+      return "bg-[#FFFDD0]";
+    case "brass":
+      return "bg-[#b5a642]";
+  }
+}
+
+function handleHeroButton() {
+  if (cart.cart.value.length === 0) {
+    cart.addItemToCart({ color: "Obsidian" });
+  }
+  router.push("/cart");
+}
+</script>

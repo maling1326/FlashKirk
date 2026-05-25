@@ -36,12 +36,12 @@ export function useCart() {
     PRODUCT.CAPACITY.at(1)?.PRICE ?? PRODUCT.CAPACITY[0]?.PRICE ?? 0;
   const defaultColor = PRODUCT.COLOR.at(1) ?? PRODUCT.COLOR[0] ?? "";
 
-  function addItemToCart(
-    name: string = PRODUCT.NAME,
-    variant: string = defaultVariant,
-    price: number = defaultPrice,
-    color: string = defaultColor,
-  ) {
+  function addItemToCart({
+    name = PRODUCT.NAME,
+    variant = defaultVariant,
+    price = defaultPrice,
+    color = defaultColor,
+  } = {}) {
     const existingItem = cart.value.find(
       (item) =>
         item.name === name && item.variant === variant && item.color === color,

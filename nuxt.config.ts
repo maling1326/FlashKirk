@@ -9,7 +9,11 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     server: {
-      allowedHosts: ["reentry-strangely-evacuate.ngrok-free.dev", "*"],
+      allowedHosts: [
+        "reentry-strangely-evacuate.ngrok-free.dev",
+        "*",
+        "lucky-memes-arrive.loca.lt",
+      ],
     },
   },
 
